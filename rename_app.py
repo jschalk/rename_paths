@@ -10,11 +10,11 @@ new_string = input("new_string=")
 
 
 if __name__ == "__main__":
-    rename_files_and_folders(directory)
+    rename_files_and_folders(directory, old_string, new_string)
     print(f"{directory=} 1st File and folder renaming complete.")
-    rename_files_and_folders(directory)
+    rename_files_and_folders(directory, old_string, new_string)
     print(f"{directory=} 2nd File and folder renaming complete.")
-    rename_files_and_folders(directory)
+    rename_files_and_folders(directory, old_string, new_string)
     print(f"{directory=} 3rd File and folder renaming complete.")
-    rename_files_and_folders(directory)
+    rename_files_and_folders(directory, old_string, new_string)
     print(f"{directory=} 4th File and folder renaming complete.")

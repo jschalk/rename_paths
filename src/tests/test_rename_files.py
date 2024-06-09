@@ -16,8 +16,6 @@ from src.tests.instrument_env import (
     get_instrument_temp_env_dir,
     env_dir_setup_cleanup,
 )
-from pytest import raises as pytest_raises
-from platform import system as platform_system
 from os.path import exists as os_path_exist
 from src.rename import rename_files_and_folders, rename_files_and_folders_4times
 
