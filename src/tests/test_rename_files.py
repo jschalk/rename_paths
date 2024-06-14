@@ -70,7 +70,7 @@ def test_rename_files_and_folders_ChangesWhenNeeded_lowercase(env_dir_setup_clea
     assert files_dict.get(bobphin_file_name) == dolphin_file_text
 
 
-def test_rename_files_and_folders_ChangesWhenNeeded_lowercase_parameters(
+def test_rename_files_and_folders_NoChangesWith_lowercase_parameters(
     env_dir_setup_cleanup,
 ):
     # GIVEN
@@ -87,18 +87,20 @@ def test_rename_files_and_folders_ChangesWhenNeeded_lowercase_parameters(
     assert files_dict.get(lopster_file_name) == lopster_file_text
 
     # WHEN
-    rename_files_and_folders(env_dir, "Dol", "bob")
+    alert_files_folders = rename_files_and_folders(env_dir, "Dol", "bob")
 
     # THEN
     files_dict = dir_files(dir_path=env_dir)
     assert len(files_dict) == 2
-    assert files_dict.get(dolphin_file_name) is None
+    assert files_dict.get(dolphin_file_name) == dolphin_file_text
     bobphin_file_name = "bobphin.json"
     assert files_dict.get(lopster_file_name) == lopster_file_text
-    assert files_dict.get(bobphin_file_name) == dolphin_file_text
+    assert files_dict.get(bobphin_file_name) is None
+    assert len(alert_files_folders) == 1
+    assert alert_files_folders[0] == f"File that was not renamed: {dolphin_file_name}"
 
 
-def test_rename_files_and_folders_ChangesWhenNeeded_lowercase_filenames(
+def test_rename_files_and_folders_NoChangesWith_lowercase_filenames(
     env_dir_setup_cleanup,
 ):
     # GIVEN
@@ -115,15 +117,16 @@ def test_rename_files_and_folders_ChangesWhenNeeded_lowercase_filenames(
     assert files_dict.get(lopster_file_name) == lopster_file_text
 
     # WHEN
-    rename_files_and_folders(env_dir, "dol", "bob")
+    alert_files_folders = rename_files_and_folders(env_dir, "dol", "bob")
 
     # THEN
     files_dict = dir_files(dir_path=env_dir)
     assert len(files_dict) == 2
-    assert files_dict.get(dolphin_file_name) is None
+    assert files_dict.get(dolphin_file_name) == dolphin_file_text
     bobphin_file_name = "bobphin.json"
     assert files_dict.get(lopster_file_name) == lopster_file_text
-    assert files_dict.get(bobphin_file_name) == dolphin_file_text
+    assert files_dict.get(bobphin_file_name) is None
+    assert alert_files_folders[0] == f"File that was not renamed: {dolphin_file_name}"
 
 
 def test_rename_files_and_folders_ChangesWhenNeeded_directory(
